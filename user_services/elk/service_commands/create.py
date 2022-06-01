@@ -6,6 +6,7 @@ import json
 import subprocess
 
 def main():
+    print("Hello")
     ret_val = {}
 
     playbook_exe = "/home/mfuser/.local/bin/ansible-playbook"
