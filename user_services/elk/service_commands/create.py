@@ -21,7 +21,7 @@ def main():
     r = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     decoded_out = r.stdout.decode("utf-8")
-    play_recap = decoded_out[decoded_out.find("PLAY RECAP"):]
+    #play_recap = decoded_out[decoded_out.find("PLAY RECAP"):]
     decoded_err = r.stderr.decode("utf-8")
 
     if r.returncode == 0:
@@ -31,7 +31,8 @@ def main():
         ret_val["success"] =  True
         ret_val["msg"] = "ELK playbook install failed.."
 
-    ret_val["play_recap"] = play_recap
+    #ret_val["play_recap"] = play_recap
+    ret_val["play_recap"] = decoded_out
     print(json.dumps(ret_val))
     
 if __name__ == "__main__":
