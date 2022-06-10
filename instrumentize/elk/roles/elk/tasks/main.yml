@@ -63,63 +63,63 @@
   when:
     - ansible_facts['distribution'] == "Ubuntu"
 
-- name: Configure docker-ce repo
-  tags: docker
-  become: true
-  get_url:
-    url: https://download.docker.com/linux/centos/docker-ce.repo
-    dest: /etc/yum.repos.d/docer-ce.repo
-    mode: 0644
-  when:
-    - ansible_facts['distribution'] == "CentOS"
-- name: Add an apt signing key for Docker for Ubuntu
-  become: true
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Ubuntu"
+#- name: Configure docker-ce repo
+#  tags: docker
+#  become: true
+#  get_url:
+#    url: https://download.docker.com/linux/centos/docker-ce.repo
+#    dest: /etc/yum.repos.d/docer-ce.repo
+#    mode: 0644
+#  when:
+#    - ansible_facts['distribution'] == "CentOS"
+#- name: Add an apt signing key for Docker for Ubuntu
+#  become: true
+#  apt_key:
+#    url: https://download.docker.com/linux/ubuntu/gpg
+#    state: present
+#  when:
+#    - ansible_facts['distribution'] == "Ubuntu"
 
-- name: Add apt repository for stable version for Ubuntu
-  become: true
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Ubuntu"
+#- name: Add apt repository for stable version for Ubuntu
+#  become: true
+#  apt_repository:
+#    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+#    state: present
+#  when:
+#    - ansible_facts['distribution'] == "Ubuntu"
 
-- name: Install docker
-  tags: docker
-  become: true
-  ansible.builtin.package:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-    state: present
+#- name: Install docker
+#  tags: docker
+#  become: true
+#  ansible.builtin.package:
+#    name:
+#      - docker-ce
+#      - docker-ce-cli
+#      - containerd.io
+#    state: present
 
-- name: Create docker group
-  tags: docker
-  become: true
-  group:
-    name: "docker"
-    state: present
+#- name: Create docker group
+#  tags: docker
+#  become: true
+#  group:
+#    name: "docker"
+#    state: present
 
-- name: Adding user ansible to docker group
-  tags: docker
-  become: true
-  user:
-    name: ansible
-    groups: "docker"
-    append: "yes"
+#- name: Adding user ansible to docker group
+#  tags: docker
+#  become: true
+#  user:
+#    name: ansible
+#    groups: "docker"
+#    append: "yes"
 
-- name: Start and enable docker service
-  tags: docker
-  become: true
-  service:
-    name: docker
-    state: started
-    enabled: yes
+#- name: Start and enable docker service
+#  tags: docker
+#  become: true
+#  service:
+#    name: docker
+#    state: started
+#    enabled: yes
 
 - name: Check if Docker Compose is installed
   tags: docker-compose
