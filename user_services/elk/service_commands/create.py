@@ -48,13 +48,13 @@ def main():
         for file in os.scandir(os.getcwd()):
             if file.endswith('.ndjson'):
               print("Uploading " + file)
-                api_ip = 'http://' + meas_node_ip + '/api/saved_objects/_import?createNewCopies=true'
-                headers = {
-                  'kbn-xsrf': 'true',
-                }
-                files = {
-                  'file': (file, open(file, 'rb')),
+              api_ip = 'http://' + meas_node_ip + '/api/saved_objects/_import?createNewCopies=true'
+              headers = {
+                'kbn-xsrf': 'true',
               }
+              files = {
+                'file': (file, open(file, 'rb')),
+            }
             response = requests.post(api_ip, headers=headers, files=files, auth=(username, password))
      except Exception as e:
         print(f"Error in importing dashboards: {e}")
