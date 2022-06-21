@@ -41,7 +41,7 @@ def main():
     try:
       meas_node_ip = socket.gethostbyname(socket.gethostname())
       username = "fabric"
-      os.chdir('../../../instrumentize/elk/credentials')
+      os.chdir('../../mf_git/instrumentize/elk/credentials')
       f = open("nginx_passwd", "r")
       password = f.readline()
       f.close()
