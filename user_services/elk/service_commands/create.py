@@ -5,6 +5,7 @@ import os
 import json
 import subprocess
 import socket
+import requests
 
 def main():
     print("Hello")
@@ -46,7 +47,7 @@ def main():
       f.close()
       password = password.rstrip()
       os.chdir('../dashboards')
-      for file in os.scandir(os.getcwd()):
+      for file in os.listdir(os.getcwd()):
         if file.endswith('.ndjson'):
           print("Uploading " + file)
           api_ip = 'http://' + meas_node_ip + '/api/saved_objects/_import?createNewCopies=true'
